@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MJ Digital — Business Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 2rem;
+      padding: 2rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .hint {
+      color: #666;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .print-btn {
+      background: transparent;
+      border: 1px solid #c9a84c;
+      color: #c9a84c;
+      padding: 0.6rem 1.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: #c9a84c; color: #000; }
+
+    /* CARD FRONT */
+    .card {
+      width: 3.5in;
+      height: 2in;
+      background: linear-gradient(135deg, #0a0800 0%, #1a1408 60%, #0a0800 100%);
+      border: 1px solid #2a2010;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+    }
+
+    .card-left {
+      flex: 1;
+      padding: 0.25in;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-logo {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f0ece4;
+    }
+    .card-logo span { color: #c9a84c; }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-size: 0.45rem;
+      color: #c9a84c;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-top: 0.1rem;
+    }
+
+    .card-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08in;
+    }
+
+    .card-row {
+      font-size: 0.42rem;
+      color: rgba(240,236,228,0.55);
+      letter-spacing: 0.5px;
+    }
+    .card-row span { color: #c9a84c; margin-right: 0.08in; }
+
+    .card-right {
+      width: 1in;
+      border-left: 1px solid rgba(201,168,76,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.08in;
+      padding: 0.15in;
+    }
+
+    .card-photo {
+      width: 0.6in;
+      height: 0.6in;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #c9a84c;
+    }
+
+    .card-qr {
+      width: 0.65in;
+      height: 0.65in;
+      background: #fff;
+      padding: 3px;
+      border-radius: 3px;
+    }
+
+    .card-qr-label {
+      font-size: 0.3rem;
+      color: rgba(240,236,228,0.35);
+      text-align: center;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+
+    /* CARD BACK */
+    .card-back {
+      width: 3.5in;
+      height: 2in;
+      background: linear-gradient(135deg, #100e08 0%, #1a1408 100%);
+      border: 1px solid #2a2010;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.15in;
+      padding: 0.25in;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+
+    .card-back::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+    }
+
+    .back-logo {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f0ece4;
+    }
+    .back-logo span { color: #c9a84c; }
+
+    .back-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.6rem;
+      color: rgba(240,236,228,0.4);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .back-services {
+      display: flex;
+      gap: 0.2in;
+      justify-content: center;
+    }
+
+    .back-service {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.05in;
+      font-size: 0.35rem;
+      color: rgba(240,236,228,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      max-width: 0.8in;
+    }
+    .back-service span { font-size: 0.7rem; }
+
+    .back-url {
+      font-size: 0.38rem;
+      color: #c9a84c;
+      letter-spacing: 1.5px;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding-top: 0.1in;
+      width: 100%;
+      text-align: center;
+    }
+
+    .label {
+      color: #555;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    @media print {
+      body { background: white; padding: 0; gap: 0; }
+      .hint, .print-btn, .label { display: none; }
+      .card, .card-back {
+        box-shadow: none;
+        page-break-after: always;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="hint">Business Card — Print Ready</p>
+
+  <p class="label">— Front —</p>
+
+  <div class="card">
+    <div class="card-left">
+      <div class="card-logo">MJ<span>Digital</span></div>
+      <div>
+        <p class="card-name">MJ</p>
+        <p class="card-title">Creative Director & Founder</p>
+      </div>
+      <div class="card-contacts">
+        <p class="card-row"><span>📞</span>0939798950</p>
+        <p class="card-row"><span>✉️</span>mohammedjemalw7@gmail.com</p>
+        <p class="card-row"><span>✈️</span>t.me/sherlock39</p>
+        <p class="card-row"><span>📸</span>@mj_sam0</p>
+      </div>
+    </div>
+    <div class="card-right">
+      <img src="mj.jpg" alt="MJ" class="card-photo" />
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mj-digital-eight.vercel.app&format=png"
+        alt="QR"
+        class="card-qr"
+      />
+      <p class="card-qr-label">Scan to visit<br>our website</p>
+    </div>
+  </div>
+
+  <p class="label">— Back —</p>
+
+  <div class="card-back">
+    <p class="back-logo">MJ<span>Digital</span></p>
+    <p class="back-tagline">Elevating Your Brand Through Visual Storytelling</p>
+    <div class="back-services">
+      <div class="back-service"><span>📷</span>Photography & Video</div>
+      <div class="back-service"><span>🎨</span>Graphic Design</div>
+      <div class="back-service"><span>📱</span>Social Media</div>
+    </div>
+    <p class="back-url">mj-digital-eight.vercel.app</p>
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Print Card</button>
+
+</body>
+</html>
